@@ -7,6 +7,9 @@ var settings : Dictionary = {}
 # 插件数据
 var plugins : PluginsManager = PluginsManager.new()
 
+# 游戏对象
+var game : Game = null
+
 # 其他数据
 var others : Dictionary = {}
 
