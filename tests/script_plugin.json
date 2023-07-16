@@ -1,5 +1,0 @@
-{
-	"type" : "script",
-	"version" : 1,
-	"source_code" : "extends Node\nfunc _init():\n\tprint(\"good\")"
-}
