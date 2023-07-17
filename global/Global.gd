@@ -24,6 +24,8 @@ func _ready():
 	print(plugin.to_string())
 	
 	add_child(plugin)
+	
+	add_child(ConwayCellManager.new())
 
 # 从文件加载设置
 func read_settings():
