@@ -9,7 +9,7 @@ func _unhandled_input(event):
 		get_tree().quit()
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://interfaces/start_game.tscn")
+	get_tree().change_scene_to_file("res://interfaces/create_game.tscn")
 
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://interfaces/game_settings.tscn")

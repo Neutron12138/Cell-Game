@@ -1,7 +1,7 @@
 extends Node
 
 signal on_start_menu
-signal on_start_game
+signal on_create_game
 signal on_load_game
 signal on_gaming
 signal on_game_menu
