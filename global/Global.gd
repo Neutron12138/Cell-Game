@@ -4,28 +4,26 @@ extends Node
 # 设置数据
 var settings : Dictionary = {}
 
-# 插件数据
-var plugins : PluginsManager = PluginsManager.new()
-
 # 游戏对象
 var game : Game = null
 
 # 其他数据
 var others : Dictionary = {}
 
+# 游戏模式
+var game_modes : Array[String] = []
+
+# 插件数据
+var plugins : Array[Plugin] = []
+
 func _ready():
-	var file = FileAccess.open("res://tests/script_plugin.json",FileAccess.READ)
-	var data = JSON.parse_string(file.get_as_text())
-	file.close()
+	game_modes.append_array(Constants.DEFAULT_GAME_MODES)
 	
-	var plugin = Plugin.new()
-	plugin._data = data
-	print(str(plugin.initialize()))
-	print(plugin.to_string())
-	
+	var result = load_plugin("res://tests/script_plugin.json")
+	var plugin = result._result
+	plugin.name = str(plugins.size())
+	plugins.append(plugin)
 	add_child(plugin)
-	
-	add_child(ConwayCellManager.new())
 
 # 从文件加载设置
 func read_settings():
@@ -42,3 +40,23 @@ func read_plugins():
 # 保存插件到文件
 func save_plugins():
 	pass
+
+static func load_plugin(path : String,skip_cr : bool = false) -> Result:
+	
+	var result : Result = null
+	
+	# 加载数据
+	result = Utils.load_text(path,skip_cr)
+	if not result.ok():
+		return result
+	var data = JSON.parse_string(result._result)
+	
+	# 加载插件
+	var plugin = Plugin.new()
+	plugin._data = data
+	result = plugin.initialize()
+	if not result.ok():
+		return result
+	
+	# 返回结果
+	return Result.result(plugin)

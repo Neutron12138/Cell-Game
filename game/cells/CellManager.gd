@@ -1,14 +1,13 @@
 class_name CellManager
 extends Node
 
-@export
-var world_size : Vector2i = Vector2i()
-
+var _world_size : Vector2i = Vector2i()
 var _cells : Array[Dictionary] = []
 
-func _ready() -> void:
-	_resize(world_size.x * world_size.y)
-	print("super")
+func _init(size : Vector2i,cells : Array[Dictionary] = []) -> void:
+	_world_size = size
+	_resize(_world_size.x * _world_size.y)
+	_cells = cells
 
 func _resize(size : int) -> void:
 	_cells.resize(size)
@@ -34,6 +33,12 @@ func get_cells() -> Array[Dictionary]:
 
 func update() -> Result:
 	return Result.OK()
+
+func _to_string() -> String:
+	return str({
+		"world_size" : str(_world_size),
+		"cells" : str(_cells)
+	})
 
 static func is_cell_valid(cell : Dictionary) -> Result:
 	return Result.OK()

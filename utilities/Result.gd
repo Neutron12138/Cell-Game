@@ -2,9 +2,12 @@ class_name Result
 extends RefCounted
 
 var _ok : bool = true
-var _results = null
+var _result = null
 var _errors : Array = []
 var _warnings : Array = []
+
+func ok() -> bool:
+	return _ok
 
 func _to_string() -> String:
 	var result = ""
@@ -14,8 +17,8 @@ func _to_string() -> String:
 	else:
 		result = "Error"
 	
-	if _results != null:
-		result += "\nresult:" + str(_results)
+	if _result != null:
+		result += "\nresult:" + str(_result)
 	if _errors.size() != 0:
 		result += "\nerrors:" + str(_errors) 
 	if _warnings.size() != 0:
@@ -25,7 +28,7 @@ func _to_string() -> String:
 
 static func result(value) -> Result:
 	var result = Result.new()
-	result._ok = false
+	result._ok = true
 	result._result = value
 	return result
 
