@@ -10,3 +10,4 @@ signal on_exit
 signal on_plugin_manager
 signal on_guide
 signal on_about
+signal on_error

@@ -19,7 +19,7 @@ var plugins : Array[Plugin] = []
 func _ready():
 	game_modes.append_array(Constants.DEFAULT_GAME_MODES)
 	
-	var result = load_plugin("res://tests/script_plugin.json")
+	var result = Utils.load_plugin("res://tests/script_plugin.json")
 	var plugin = result._result
 	plugin.name = str(plugins.size())
 	plugins.append(plugin)
@@ -40,23 +40,3 @@ func read_plugins():
 # 保存插件到文件
 func save_plugins():
 	pass
-
-static func load_plugin(path : String,skip_cr : bool = false) -> Result:
-	
-	var result : Result = null
-	
-	# 加载数据
-	result = Utils.load_text(path,skip_cr)
-	if not result.ok():
-		return result
-	var data = JSON.parse_string(result._result)
-	
-	# 加载插件
-	var plugin = Plugin.new()
-	plugin._data = data
-	result = plugin.initialize()
-	if not result.ok():
-		return result
-	
-	# 返回结果
-	return Result.result(plugin)

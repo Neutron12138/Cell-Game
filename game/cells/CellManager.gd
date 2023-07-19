@@ -31,6 +31,9 @@ func set_cells(cells : Array[Dictionary]) -> void:
 func get_cells() -> Array[Dictionary]:
 	return _cells
 
+func to_world_coord(screen_coord : Vector2) -> Vector2i:
+	return Vector2i.ZERO
+
 func update() -> Result:
 	return Result.OK()
 

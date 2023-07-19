@@ -12,8 +12,24 @@ signal on_mouse_moved(relative : Vector2)
 @export
 var not_emit_when_double_clicked : bool = true
 
+@export
+var process_event_when_input : bool = false
+
+@export
+var process_event_when_unhandled_input : bool = true
+
+
+func _input(event : InputEvent) -> void:
+	if process_event_when_input:
+		_process_event(event)
+
 
 func _unhandled_input(event : InputEvent) -> void:
+	if process_event_when_unhandled_input:
+		_process_event(event)
+
+
+func _process_event(event : InputEvent) -> void:
 	if event is InputEventMouseButton:
 		_on_mouse_button(event)
 	elif event is InputEventMouseMotion:
