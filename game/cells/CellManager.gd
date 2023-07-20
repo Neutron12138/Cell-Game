@@ -35,7 +35,7 @@ func to_world_coord(screen_coord : Vector2) -> Vector2i:
 	return Vector2i.ZERO
 
 func update() -> Result:
-	return Result.OK()
+	return Result.SUCCESSFUL()
 
 func _to_string() -> String:
 	return str({
@@ -44,4 +44,4 @@ func _to_string() -> String:
 	})
 
 static func is_cell_valid(cell : Dictionary) -> Result:
-	return Result.OK()
+	return Result.SUCCESSFUL()

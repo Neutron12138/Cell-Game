@@ -26,12 +26,16 @@ func _on_start_pressed() -> void:
 		return
 	game.game_mode = Global.game_modes[mode]
 	
-	var size = world_size.get_data()
-	if size.x <= 0.0 or size.y <= 0.0:
+	var wsize = world_size.get_data()
+	if wsize.x <= 0.0 or wsize.y <= 0.0:
 		$dialog.dialog_text = "ALERT_WORLD_SIZE_NOT_POSITIVE"
 		$dialog.show()
 		return
-	game.cells = CellManager.new(size)
+	
+	if game.game_mode == "conway":
+		game.cells = ConwayCellManager.new(size)
+	else:
+		return
 	
 	Global.game = game
 	print(game)
