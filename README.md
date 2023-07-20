@@ -16,6 +16,16 @@
 
 # 更新日志
 
+## alpha 6(2023-07-20)
+
+对错误传递做了修改（Result类）
+
+做了一些修改以适应新版Result
+
+Result类去除OK()、_ok等，改为SUCCESSFUL()、FAILED()、_is_successful等
+
+新增_locations，可以传递发生位置，可选
+
 ## alpha 5(2023-07-19)
 
 做了些小修改
